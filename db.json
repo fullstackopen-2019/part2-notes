@@ -21,13 +21,13 @@
     {
       "content": "POST is used to add data to a REST api",
       "date": "2019-05-31T10:37:37.759Z",
-      "important": true,
+      "important": false,
       "id": 4
     },
     {
       "content": "Network tab of devtools is most benefical",
       "date": "2019-05-31T10:41:46.058Z",
-      "important": true,
+      "important": false,
       "id": 5
     }
   ]
