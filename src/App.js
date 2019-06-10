@@ -20,6 +20,15 @@ const App = () => {
       .then(initialNotes => setNotes(initialNotes))
   }, [])
 
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      noteService.setToken(user.token)
+    }
+  }, [])
+
   const notesToShow = showAll
     ? notes
     : notes.filter(note => note.important)
@@ -31,6 +40,10 @@ const App = () => {
         username, password,
       })
 
+      window.localStorage.setItem(
+        'loggedNoteappUser', JSON.stringify(user)
+      )       
+      noteService.setToken(user.token)
       setUser(user)
       setUsername('')
       setPassword('')
@@ -54,7 +67,7 @@ const App = () => {
     <form onSubmit={handleLogin}>
       <div>
         username
-          <input
+        <input
           type="text"
           value={username}
           name="Username"
@@ -63,7 +76,7 @@ const App = () => {
       </div>
       <div>
         password
-          <input
+        <input
           type="password"
           value={password}
           name="Password"
@@ -80,7 +93,7 @@ const App = () => {
         value={newNote}
         onChange={handleNoteChange}
       />
-      <button type="submit">tallenna</button>
+      <button type="submit">save</button>
     </form>
   )
 
@@ -148,13 +161,6 @@ const App = () => {
       <ul>
         {rows()}
       </ul>
-      <form onSubmit={addNote}>
-        <input
-          value={newNote} 
-          onChange={handleNoteChange}
-        />
-        <button type="submit">save</button>
-      </form>
 
       <Footer />
     </div>
