@@ -80,7 +80,7 @@ const App = () => {
         value={newNote}
         onChange={handleNoteChange}
       />
-      <button type="submit">tallenna</button>
+      <button type="submit">save</button>
     </form>
   )
 
