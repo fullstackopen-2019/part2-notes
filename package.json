@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
@@ -13,7 +14,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server -p3001 db.json"
+    "server": "json-server -p3001 db.json",
+    "eslint": "eslint ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -31,6 +33,7 @@
     ]
   },
   "devDependencies": {
+    "eslint-plugin-jest": "^22.6.4",
     "json-server": "^0.15.0"
   },
   "proxy": "http://localhost:3001"

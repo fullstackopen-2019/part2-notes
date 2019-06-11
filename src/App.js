@@ -5,18 +5,17 @@ import Footer from './components/Footer'
 import LoginForm from './components/LoginForm'
 import Togglable from './components/Togglable'
 import NoteForm from './components/NoteForm'
-
 import noteService from './services/notes'
-import loginService from './services/login'  
+import loginService from './services/login'
 
 const App = () => {
-  const [notes, setNotes] = useState([]) 
-  const [newNote, setNewNote] = useState('') 
+  const [notes, setNotes] = useState([])
+  const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
   const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('') 
-  const [user, setUser] = useState(null) 
+  const [password, setPassword] = useState('')
+  const [user, setUser] = useState(null)
   const [loginVisible, setLoginVisible] = useState(false)
 
   useEffect(() => {
@@ -47,7 +46,7 @@ const App = () => {
 
       window.localStorage.setItem(
         'loggedNoteappUser', JSON.stringify(user)
-      )       
+      )
       noteService.setToken(user.token)
       setUser(user)
       setUsername('')
@@ -94,7 +93,7 @@ const App = () => {
   const handleNoteChange = (event) => {
     setNewNote(event.target.value)
   }
-  
+
   const noteFormRef = React.createRef()
 
   const addNote = (event) => {
@@ -125,7 +124,7 @@ const App = () => {
       .then(returnedNote => {
         setNotes(notes.map(note => note.id !== id ? note : returnedNote))
       })
-      .catch(error => {
+      .catch(() => {
         setErrorMessage(
           `Note '${note.content}' was already removed from server`
         )
@@ -134,7 +133,6 @@ const App = () => {
         }, 5000)
         setNotes(notes.filter(n => n.id !== id))
       })
-      
   }
 
   return (
@@ -171,4 +169,4 @@ const App = () => {
   )
 }
 
-export default App 
+export default App
