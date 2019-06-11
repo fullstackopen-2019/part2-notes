@@ -91,22 +91,16 @@ const App = () => {
     )
   }
 
-  const noteForm = () => (
-    <form onSubmit={addNote}>
-      <input
-        value={newNote}
-        onChange={handleNoteChange}
-      />
-      <button type="submit">save</button>
-    </form>
-  )
-
   const handleNoteChange = (event) => {
     setNewNote(event.target.value)
   }
+  
+  const noteFormRef = React.createRef()
 
   const addNote = (event) => {
     event.preventDefault()
+    noteFormRef.current.toggleVisibility()
+
     const noteObject = {
       content: newNote,
       date: new Date().toISOString(),
@@ -153,7 +147,7 @@ const App = () => {
         loginForm() :
         <div>
           <p>{user.name} logged in</p>
-          <Togglable buttonLabel="new note">
+          <Togglable buttonLabel="new note" ref={noteFormRef}>
             <NoteForm
               onSubmit={addNote}
               value={newNote}
