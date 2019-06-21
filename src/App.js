@@ -102,9 +102,7 @@ const App = () => {
 
     const noteObject = {
       content: newNote,
-      date: new Date().toISOString(),
-      important: Math.random() > 0.5,
-      id: notes.length + 1,
+      important: false,
     }
 
     noteService
